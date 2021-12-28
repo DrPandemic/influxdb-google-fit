@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Google SignIn</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <style>
+         body        { padding-top:70px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="block text-center">
+                <h1>Social Authentication</h1>
+                <p>Login or Register with:</p>
+                <a href="{{.url}}">SignIn with Google</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="block">
+                <h1 class="text-center">Profile Information</h1>
+                <div>
+                    <p>
+                        <strong>Expires at</strong>: {{.expiry}}<br>
+                        <strong>Email</strong>: {{.email}}<br>
+                        <strong>Next tick</strong>: {{.nextTick}}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="block">
+                <h1 class="text-center">Backfill</h1>
+                <div>
+                    <label for="start">Start:</label>
+                    <input type="datetime-local" id="start" name="start">
+                    <label for="end">End:</label>
+                    <input type="datetime-local" id="end" name="end">
+                    <button id="submit" onclick="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        function submit() {
+            const start = (new Date(document.getElementById("start").value)).toISOString();
+            const end = (new Date(document.getElementById("end").value)).toISOString();
+
+            fetch("/backfill", {
+                method: 'POST',
+                body: JSON.stringify({start, end})
+            })
+        }
+    </script>
+</html>

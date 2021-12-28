@@ -1,0 +1,20 @@
+.foo {
+    color: red;
+}
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.block {
+    background-color: #e9ecef;
+    margin-bottom: 20px;
+    padding: 4rem 2rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
